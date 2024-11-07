@@ -1,0 +1,61 @@
+Horse Race Algorithm
+
+Goal: -simulate a horse race with a variable number of horses and a variable track length
+      -use object-oriented programming principles to model the race and the horses 
+      -race should continue until one horse crosses the finish line
+      -the program should prevent invalid inputs and memory leaks
+
+Input(s):   -number of horses (integer): needs to be greater than or equal to 2
+            -track length (integer): needs to be greater than or equal to 2
+
+Output(s):  -simulate the horse race: display the positions of each horse on the track at each turn
+            -displays the winning horse when one horse crosses the finish line
+            -error messages for invalid inputs
+
+Steps:
+1. Include necessary C++ libraries:
+    iostream: for input and output operations.
+    ctime: for working with time.
+    cstdlib: for generating random numbers.
+    vector: for creating and managing a collection of Horse objects.
+
+2. Create a Horse class:
+   - attributes:
+     - `number` (integer): represents the horse's number
+     - `position` (integer): represents the horse's current position on the track
+   - methods:
+     - `Horse(number: int)`: constructor to initialize the horse with a number
+     - `getNumber(): int`: getter method to retrieve the horse's number
+     - `getPosition(): int`: getter method to retrieve the horse's position
+     - `move()`: method to move the horse forward based on random chance
+
+3. Create a Race class:
+   - need these attributes:
+     - `numHorses` (integer): number of horses in the race
+     - `trackLength` (integer): length of the race track
+     - `horses` (vector of Horse objects): stores the horse objects
+   - methods:
+     - `Race(numHorses: int, trackLength: int)`: constructor to initialize the race with 
+        the number of horses and track length inputted
+     - `startRace()`: method to start the race and continue until one horse wins
+     - `printRaceStatus()`: method to print the current race status
+     - `checkForWinner()`: method to check if any horse has crossed the finish line
+     - destructor: ensures proper memory management to avoid memory leaks
+
+4. main function:
+   - ask the user for the number of horses and track length
+   - create a Race object with the provided inputs
+   - call `startRace()` to start the race simulation
+   - after the race, clean up resources and exit
+
+5. the `startRace()` method:
+   - initialize the random number generator with a seed based on the current time
+   - continuously loop until a horse wins:
+     - for each horse in the race, call the `move()` method to randomly move it forward or keep it in place
+     - after each turn, call `printRaceStatus()` to display the current horse positions in the race
+     - check for a winner using `checkForWinner()`
+   - when a horse wins, display the winning horse
+
+6. the `checkForWinner()` method:
+   - iterate through all horses and check if any horse's position has crossed the finish line (track length)
+   - if a winner is found, print the winning horse's number and return
